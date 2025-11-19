@@ -60,9 +60,11 @@ export function CheapScreen({setCurrentScreen}) {
                         dropDownContainerStyle={s.dropDownContainer}
                     />
                 </View>
-                <TouchableOpacity style={{marginTop: height * 0.05}} onPress={() => getItem()}>
-                    <Text style={s.inputText}>Search</Text>
-                </TouchableOpacity>
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <TouchableOpacity style={s.search} onPress={() => getItem()}>
+                        <Text style={s.inputText}>Search</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     </>

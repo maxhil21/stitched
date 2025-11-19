@@ -61,5 +61,14 @@ export const s = StyleSheet.create({
     },
     dropDownContainer: {
         backgroundColor: '#0C0D0E',
+    },
+    search: {
+        backgroundColor: '#2E2F33',
+        borderRadius: 15,
+        height: height * 0.05,
+        width: width * 0.9,
+        marginTop: height * 0.05,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
