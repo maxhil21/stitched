@@ -14,6 +14,25 @@ export function CheapScreen({setCurrentScreen}) {
         {label: 'Option 1', value: '1'},
         {label: 'Option 2', value: '2'},
     ]);
+
+    async function getItem() {
+
+        console.log("Fetching data for item ID:", value);
+
+        try {
+            console.log("hello", value);
+            const response = await fetch('http://172.20.10.2:3000/items/1');
+            if (!response.ok) {
+                console.error("Server responded with status", response.status);
+                return;
+            }
+            const data = await response.json();
+            console.log("Fetched data:", JSON.stringify(data, null, 2));
+        } catch (err) {
+            console.error("Fetch error:", err);
+        }
+    }
+
     return <>
         <SafeAreaView style={s.safeArea}>
 
@@ -41,6 +60,9 @@ export function CheapScreen({setCurrentScreen}) {
                         dropDownContainerStyle={s.dropDownContainer}
                     />
                 </View>
+                <TouchableOpacity style={{marginTop: height * 0.05}} onPress={() => getItem()}>
+                    <Text style={s.inputText}>Search</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     </>
