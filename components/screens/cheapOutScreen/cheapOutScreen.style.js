@@ -30,4 +30,10 @@ export const s = StyleSheet.create({
         position: 'absolute',
         left: "5%",
     },
+    text: {
+        fontSize: height * 0.03,
+        color: '#8F959E',
+        alignSelf: "center",
+        top: height * 0.05,
+    }
 });
