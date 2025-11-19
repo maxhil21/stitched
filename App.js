@@ -1,9 +1,10 @@
-import { useFonts } from 'expo-font';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Screen } from "@/screens/mainScreen/mainScreen";
+import {useFonts} from 'expo-font';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {Screen} from "@/screens/mainScreen/mainScreen";
 import {useState} from "react";
 import {CheapScreen} from "@/screens/cheapScreen/cheapScreen";
 import {AverageScreen} from "@/screens/averageScreen/averageScreen";
+import {CheapOutScreen} from "@/screens/cheapOutScreen/cheapOutScreen";
 
 export default function App() {
 
@@ -18,12 +19,15 @@ export default function App() {
                 return <CheapScreen setCurrentScreen={setCurrentScreen}/>;
             case 'average':
                 return <AverageScreen setCurrentScreen={setCurrentScreen}/>;
+            case 'cheapOut':
+                return <CheapOutScreen setCurrentScreen={setCurrentScreen}/>;
 
-            default: return null;
+            default:
+                return null;
         }
     }
 
-    const [ fontsLoaded ] = useFonts({
+    const [fontsLoaded] = useFonts({
         "CardotSemibold": require("./assets/fonts/CardotSemibold-1jzKM.ttf")
     });
 
