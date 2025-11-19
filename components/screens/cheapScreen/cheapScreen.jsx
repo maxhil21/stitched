@@ -12,12 +12,17 @@ export function CheapScreen({setCurrentScreen, setValue, itemId}) {
     const [items, setItems] = useState([
         {label: 'Option 1', value: '1'},
         {label: 'Option 2', value: '2'},
+        {label: 'diamond Bladed Knife', value: '332'}
     ]);
 
     const _onDropdownChange = (state) => {
         setValue(state.value);
     }
 
+    function changeScreen() {
+        setCurrentScreen('main');
+        setCurrentScreen('cheapOut');
+    }
 
     return <>
         <SafeAreaView style={s.safeArea}>
@@ -48,7 +53,8 @@ export function CheapScreen({setCurrentScreen, setValue, itemId}) {
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <TouchableOpacity style={s.search} onPress={() => {
-                        setCurrentScreen('cheapOut');
+                        changeScreen();
+                        console.log("pressed");
                     }}>
                         <Text style={s.inputText}>Search</Text>
                     </TouchableOpacity>
