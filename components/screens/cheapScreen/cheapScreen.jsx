@@ -4,34 +4,20 @@ import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
 import {useState} from "react";
 import DropDownPicker from 'react-native-dropdown-picker';
 
-export function CheapScreen({setCurrentScreen}) {
+export function CheapScreen({setCurrentScreen, setValue, itemId}) {
 
     const insets = useSafeAreaInsets();
     const {height} = Dimensions.get("window");
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
     const [items, setItems] = useState([
         {label: 'Option 1', value: '1'},
         {label: 'Option 2', value: '2'},
     ]);
 
-    async function getItem() {
-
-        console.log("Fetching data for item ID:", value);
-
-        try {
-            console.log("hello", value);
-            const response = await fetch('http://172.20.10.2:3000/items/1');
-            if (!response.ok) {
-                console.error("Server responded with status", response.status);
-                return;
-            }
-            const data = await response.json();
-            console.log("Fetched data:", JSON.stringify(data, null, 2));
-        } catch (err) {
-            console.error("Fetch error:", err);
-        }
+    const _onDropdownChange = (state) => {
+        setValue(state.value);
     }
+
 
     return <>
         <SafeAreaView style={s.safeArea}>
@@ -48,10 +34,10 @@ export function CheapScreen({setCurrentScreen}) {
                 <View style={s.inputContainer}>
                     <DropDownPicker
                         open={open}
-                        value={value}
+                        value={itemId}
                         items={items}
                         setOpen={setOpen}
-                        setValue={setValue}
+                        onSelectItem={_onDropdownChange}
                         setItems={setItems}
                         placeholder="Select an option"
                         dropDownDirection="BOTTOM"
@@ -61,7 +47,9 @@ export function CheapScreen({setCurrentScreen}) {
                     />
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <TouchableOpacity style={s.search} onPress={() => setCurrentScreen('cheapOut')}>
+                    <TouchableOpacity style={s.search} onPress={() => {
+                        setCurrentScreen('cheapOut');
+                    }}>
                         <Text style={s.inputText}>Search</Text>
                     </TouchableOpacity>
                 </View>
