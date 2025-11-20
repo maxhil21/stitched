@@ -60,7 +60,7 @@ export const s = StyleSheet.create({
         width: width * 0.9,
         height: height * 0.05,
         borderRadius: 15,
-        color: 'blue',
+        color: '#5d7499',
     },
     inputText: {
         fontSize: height * 0.01,
