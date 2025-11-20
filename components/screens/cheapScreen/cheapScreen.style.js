@@ -36,17 +36,25 @@ export const s = StyleSheet.create({
         fontFamily: 'CardotSemibold',
     },
     subText: {
-        fontSize: height * 0.03,
+        fontSize: height * 0.02,
         color: '#8F959E',
         alignSelf: "center",
         top: height * 0.05,
+        fontFamily: 'CardotSemibold',
+    },
+    body: {
+        flex: 1,
+        paddingTop: height * 0.05,
+        alignItems: 'center',
     },
     inputContainer: {
-        flex: 1,
+        backgroundColor: '#8F959E',
         justifyContent: 'flex-start',
         marginTop: height * 0.08,
         alignItems: 'flex-start',
         paddingHorizontal: width * 0.05,
+        width: width * 0.9,
+        borderRadius: 25,
     },
     input: {
         width: width * 0.9,
