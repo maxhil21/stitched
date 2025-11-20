@@ -68,7 +68,6 @@ export function CheapScreen({setCurrentScreen, setValue}) {
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <TouchableOpacity style={s.search} onPress={() => {
                         goToOut();
-                        console.log("pressed");
                     }}>
                         <Text style={s.inputText}>Search</Text>
                     </TouchableOpacity>
