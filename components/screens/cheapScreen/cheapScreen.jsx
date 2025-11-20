@@ -20,7 +20,6 @@ export function CheapScreen({setCurrentScreen, setValue, itemId}) {
     }
 
     function changeScreen() {
-        setCurrentScreen('main');
         setCurrentScreen('cheapOut');
     }
 
