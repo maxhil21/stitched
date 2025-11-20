@@ -26,7 +26,7 @@ export function CheapScreen({setCurrentScreen, setValue}) {
                 console.error("Server responded with status", response.status);
             }
             const data = await response.json();
-            const foundItem = data.data[0].item_id;
+            const foundItem = data?.data?.[0]?.item_id;
             setItemId(foundItem);
         } catch (err) {
             console.error("Fetch error:", err);
