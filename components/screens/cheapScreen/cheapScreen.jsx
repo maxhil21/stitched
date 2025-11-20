@@ -28,7 +28,6 @@ export function CheapScreen({setCurrentScreen, setValue}) {
             const data = await response.json();
             console.log(JSON.stringify(data, null, 2));
             const foundItem = data.data[0].item_id;
-            console.log(foundItem);
             setItemId(foundItem);
         } catch (err) {
             console.error("Fetch error:", err);
