@@ -1,25 +1,45 @@
 import {s} from "./cheapScreen.style"
-import {Image, Text, TouchableOpacity, View, Dimensions} from "react-native";
+import {Image, Text, TouchableOpacity, View, Dimensions, TextInput} from "react-native";
 import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
 import {useState} from "react";
-import DropDownPicker from 'react-native-dropdown-picker';
+import Constants from "expo-constants";
 
-export function CheapScreen({setCurrentScreen, setValue, itemId}) {
+export function CheapScreen({setCurrentScreen, setValue}) {
 
     const insets = useSafeAreaInsets();
     const {height} = Dimensions.get("window");
-    const [open, setOpen] = useState(false);
-    const [items, setItems] = useState([
-        {label: 'Option 1', value: '1'},
-        {label: 'Option 2', value: '2'},
-        {label: 'diamond Bladed Knife', value: '332'}
-    ]);
+    const [searchText, setSearchText] = useState('');
+    const [itemId, setItemId] = useState(null);
 
-    const _onDropdownChange = (state) => {
-        setValue(state.value);
+    async function getId(text) {
+
+        console.log(text);
+
+        const hostUri = Constants.expoConfig?.hostUri;
+        const apiUrl = hostUri
+            ? `http://${hostUri.split(':').shift()}:3000/items/${text}`
+            : `http://localhost:3000/items/${text}`;
+
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                console.error("Server responded with status", response.status);
+            }
+            const data = await response.json();
+            const foundItem = data?.data?.[0]?.item_id;
+            setItemId(foundItem);
+        } catch (err) {
+            console.error("Fetch error:", err);
+        }
     }
 
-    function changeScreen() {
+    function goToOut() {
+        if (!itemId) {
+            <Text>No item found, Please try again</Text>
+            return;
+        }
+
+        setValue(itemId);
         setCurrentScreen('cheapOut');
     }
 
@@ -33,27 +53,21 @@ export function CheapScreen({setCurrentScreen, setValue, itemId}) {
                 <Text style={[s.headerText, {paddingTop: insets.top}]}>Bargains</Text>
             </View>
 
-            <View style={{flex: 1, paddingTop: height * 0.05}}>
+            <View style={s.body}>
                 <Text style={s.subText}>What item are you looking for?</Text>
                 <View style={s.inputContainer}>
-                    <DropDownPicker
-                        open={open}
-                        value={itemId}
-                        items={items}
-                        setOpen={setOpen}
-                        onSelectItem={_onDropdownChange}
-                        setItems={setItems}
-                        placeholder="Select an option"
-                        dropDownDirection="BOTTOM"
+                    <TextInput
                         style={s.input}
-                        textStyle={s.inputText}
-                        dropDownContainerStyle={s.dropDownContainer}
-                    />
+                        placeholder="Search..."
+                        value={searchText}
+                        onChangeText={setSearchText}
+                        onEndEditing={() => getId(searchText)}
+                        returnKeyType="search"
+                        />
                 </View>
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                     <TouchableOpacity style={s.search} onPress={() => {
-                        changeScreen();
-                        console.log("pressed");
+                        goToOut();
                     }}>
                         <Text style={s.inputText}>Search</Text>
                     </TouchableOpacity>
