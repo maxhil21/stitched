@@ -1,6 +1,6 @@
 import {s} from "./blocks.style"
 import {Text, TouchableOpacity} from "react-native";
-import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
+import {SafeAreaProvider} from "react-native-safe-area-context";
 
 export function Blocks({ setCurrentScreen}) {
     return (

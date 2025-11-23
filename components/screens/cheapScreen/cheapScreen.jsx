@@ -3,6 +3,7 @@ import {Image, Text, TouchableOpacity, View, Dimensions, TextInput} from "react-
 import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
 import {useState} from "react";
 import Constants from "expo-constants";
+import {ItemBlock} from "@/screens/cheapScreen/itemBlock";
 
 export function CheapScreen({setCurrentScreen, setValue}) {
 
@@ -10,6 +11,7 @@ export function CheapScreen({setCurrentScreen, setValue}) {
     const {height} = Dimensions.get("window");
     const [searchText, setSearchText] = useState('');
     const [itemId, setItemId] = useState(null);
+    const [data, setData] = useState(null);
 
     async function getId(text) {
 
@@ -26,6 +28,8 @@ export function CheapScreen({setCurrentScreen, setValue}) {
                 console.error("Server responded with status", response.status);
             }
             const data = await response.json();
+            setData(data);
+            console.log(JSON.stringify(data, null, 2));
             const foundItem = data?.data?.[0]?.item_id;
             setItemId(foundItem);
         } catch (err) {
@@ -63,15 +67,17 @@ export function CheapScreen({setCurrentScreen, setValue}) {
                         onChangeText={setSearchText}
                         onEndEditing={() => getId(searchText)}
                         returnKeyType="search"
-                        />
+                    />
                 </View>
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <TouchableOpacity style={s.search} onPress={() => {
-                        goToOut();
-                    }}>
-                        <Text style={s.inputText}>Search</Text>
-                    </TouchableOpacity>
-                </View>
+
+                <ItemBlock style={{backgroundColor: 'green'}} data={data}/>
+
+                <TouchableOpacity style={s.search}
+                                  onPress={() => {
+                    goToOut();
+                }}>
+                    <Text style={s.inputText}>Search</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     </>

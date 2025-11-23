@@ -67,9 +67,6 @@ export const s = StyleSheet.create({
         color: '#8F959E',
         fontFamily: 'CardotSemibold',
     },
-    dropDownContainer: {
-        backgroundColor: '#0C0D0E',
-    },
     search: {
         backgroundColor: '#2E2F33',
         borderRadius: 15,

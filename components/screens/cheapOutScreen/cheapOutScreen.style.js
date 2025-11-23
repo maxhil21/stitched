@@ -30,6 +30,10 @@ export const s = StyleSheet.create({
         position: 'absolute',
         left: "5%",
     },
+    safeArea: {
+        height: height * 0.9,
+        backgroundColor: 'transparent',
+    },
     text: {
         fontSize: height * 0.03,
         color: '#8F959E',

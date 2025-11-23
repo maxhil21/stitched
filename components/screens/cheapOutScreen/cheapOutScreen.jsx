@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import {s} from "./cheapOutScreen.style";
 import {Dimensions, Image, Text, TouchableOpacity, View} from "react-native";
-import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
 import Constants from "expo-constants";
+import {OutBlock} from "@/screens/cheapOutScreen/outBlock";
 
 const {height} = Dimensions.get("window");
 
@@ -50,11 +51,9 @@ export function CheapOutScreen({setCurrentScreen, value}) {
                 <Text style={[s.headerText, {paddingTop: insets.top}]}>Profit</Text>
             </View>
 
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={s.text}>
-                    {itemData ? JSON.stringify(itemData, null, 2) : "Loading..."}
-                </Text>
-            </View>
+            <SafeAreaView style={[s.safeArea, {top: insets.top + (height * 0.075)}]}>
+                <OutBlock itemData={itemData}/>
+            </SafeAreaView>
         </>
     );
 }
