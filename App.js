@@ -15,15 +15,12 @@ export default function App() {
     function renderCurrentScreen() {
         switch (currentScreen) {
             case 'main':
-                console.log('rendering main screen');
                 return <Screen setCurrentScreen={setCurrentScreen}/>;
             case 'cheap':
-                console.log('rendering cheap screen');
                 return <CheapScreen setCurrentScreen={setCurrentScreen} setValue={setValue} itemId={value}/>;
             case 'average':
                 return <AverageScreen setCurrentScreen={setCurrentScreen}/>;
             case 'cheapOut':
-                console.log('rendering cheap out screen');
                 return <CheapOutScreen setCurrentScreen={setCurrentScreen} value={value}/>;
             default:
                 return null;

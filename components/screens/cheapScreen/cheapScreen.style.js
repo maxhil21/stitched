@@ -75,5 +75,7 @@ export const s = StyleSheet.create({
         marginTop: height * 0.05,
         alignItems: 'center',
         justifyContent: 'center',
+        position: 'absolute',
+        bottom: height * 0.03,
     }
 });

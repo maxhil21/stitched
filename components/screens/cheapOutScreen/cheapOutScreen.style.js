@@ -32,7 +32,6 @@ export const s = StyleSheet.create({
     },
     safeArea: {
         height: height * 0.9,
-        backgroundColor: 'transparent',
     },
     text: {
         fontSize: height * 0.03,

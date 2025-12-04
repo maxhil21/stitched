@@ -50,5 +50,6 @@ export const s = StyleSheet.create({
         marginTop: height * 0.02,
         paddingLeft: height * 0.02,
         fontFamily: 'CardotSemibold',
+        padding: 10,
     }
 });

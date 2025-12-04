@@ -14,9 +14,6 @@ export function CheapScreen({setCurrentScreen, setValue}) {
     const [data, setData] = useState(null);
 
     async function getId(text) {
-
-        console.log(text);
-
         const hostUri = Constants.expoConfig?.hostUri;
         const apiUrl = hostUri
             ? `http://${hostUri.split(':').shift()}:3000/items/${text}`
@@ -29,7 +26,6 @@ export function CheapScreen({setCurrentScreen, setValue}) {
             }
             const data = await response.json();
             setData(data);
-            console.log(JSON.stringify(data, null, 2));
             const foundItem = data?.data?.[0]?.item_id;
             setItemId(foundItem);
         } catch (err) {
@@ -70,7 +66,7 @@ export function CheapScreen({setCurrentScreen, setValue}) {
                     />
                 </View>
 
-                <ItemBlock style={{backgroundColor: 'green'}} data={data}/>
+                {!data ? <Text>loading...</Text> : <ItemBlock style={{backgroundColor: 'green'}} data={data}/>}
 
                 <TouchableOpacity style={s.search}
                                   onPress={() => {

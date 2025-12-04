@@ -7,7 +7,7 @@ import {OutBlock} from "@/screens/cheapOutScreen/outBlock";
 
 const {height} = Dimensions.get("window");
 
-export function CheapOutScreen({setCurrentScreen, value}) {
+export function CheapOutScreen({setCurrentScreen, value, data}) {
     const [itemData, setItemData] = useState(null);
     const insets = useSafeAreaInsets();
 
@@ -27,9 +27,7 @@ export function CheapOutScreen({setCurrentScreen, value}) {
                     return;
                 }
                 const data = await response.json();
-                console.log(JSON.stringify(data, null, 2))
                 setItemData(data);
-                console.log(data.data?.[0]?.cost);
             } catch (err) {
                 console.error("Fetch error:", err);
             }
@@ -51,9 +49,9 @@ export function CheapOutScreen({setCurrentScreen, value}) {
                 <Text style={[s.headerText, {paddingTop: insets.top}]}>Profit</Text>
             </View>
 
-            <SafeAreaView style={[s.safeArea, {top: insets.top + (height * 0.075)}]}>
-                <OutBlock itemData={itemData}/>
-            </SafeAreaView>
+            <View style={[s.safeArea, {top: insets.top + (height * 0.075)}]}>
+                <OutBlock itemData={itemData} data={data}/>
+            </View>
         </>
     );
 }
