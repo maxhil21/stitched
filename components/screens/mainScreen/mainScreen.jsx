@@ -1,9 +1,9 @@
-import {Dimensions, Text, View} from 'react-native';
+import {Dimensions, Text, View, Image} from 'react-native';
 import { s } from './mainScreen.style';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Blocks } from "./blocks/blocks";
 
-export function Screen({ setCurrentScreen}) {
+export function Screen({setCurrentScreen}) {
 
     const insets = useSafeAreaInsets();
     const { height } = Dimensions.get("window");
@@ -11,6 +11,7 @@ export function Screen({ setCurrentScreen}) {
     return (
         <View style={s.container}>
             <View style={[s.header, {top: insets.top - (height * 0.075)}]}>
+                <Image source={require("../../../assets/stitchedLogo.png")} style={s.logo}/>
                 <Text style={[s.headerText, {paddingTop: insets.top}]}>Stitched</Text>
             </View>
             <View style={s.body}>

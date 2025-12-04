@@ -16,6 +16,15 @@ export const s = StyleSheet.create({
         borderColor: '#2E2F33',
         borderWidth: 2,
         justifyContent: 'center',
+        overflow: 'visible',
+    },
+    logo: {
+        resizeMode: 'contain',
+        position: 'absolute',
+        left: "5%",
+        top: "35%",
+        height: height * 0.085,
+        width: height * 0.085,
     },
     headerText: {
         fontSize: height * 0.056,
