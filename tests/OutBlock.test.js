@@ -8,7 +8,6 @@ jest.mock('react-native-safe-area-context', () => ({
 }));
 
 
-// import "react-native-gesture-handler/jestSetup";
 import "react-native"
 
 jest.mock("react-native-reanimated", () =>
