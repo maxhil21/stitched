@@ -1,7 +1,6 @@
 import {s} from "./outBlock.style";
-import {View, Text, Dimensions, ScrollView, TouchableOpacity} from "react-native";
+import {View, Text, Dimensions, ScrollView, TouchableOpacity, Linking} from "react-native";
 import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
-import { Linking } from 'react-native';
 
 export function OutBlock({itemData}) {
 
