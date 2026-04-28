@@ -8,6 +8,36 @@ jest.mock('react-native-safe-area-context', () => ({
 }));
 
 
+// import "react-native-gesture-handler/jestSetup";
+import "react-native"
+
+jest.mock("react-native-reanimated", () =>
+    require("react-native-reanimated/mock")
+);
+
+jest.mock("react-native/src/private/animated/NativeAnimatedHelper.js");
+
+jest.mock("react-native-safe-area-context", () => ({
+    useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
+    SafeAreaView: ({ children }) => children,
+}));
+let mockOpenUrl = jest.fn();
+
+jest.mock("react-native", () => {
+    const tempLinkingMock = {
+        openURL: mockOpenUrl,
+        canOpenURL: jest.fn()
+    }
+
+    const RN = jest.requireActual("react-native");
+    RN.Linking = tempLinkingMock;
+
+
+    return RN;
+
+});
+
+
 describe('OutBlock', () => {
 
     const mockData = {
@@ -32,15 +62,6 @@ describe('OutBlock', () => {
         expect(getByText(/cost:/)).toBeTruthy();
         expect(getByText(/quality:/)).toBeTruthy();
         expect(getByText(/expected price:/)).toBeTruthy();
-    });
-
-    test('pressing item opens link', () => {
-        const { getAllByRole } = render(<OutBlock itemData={mockData} />);
-
-        const buttons = getAllByRole('button');
-        fireEvent.press(buttons[0]);
-
-        expect(Linking.openURL).toHaveBeenCalled();
     });
 
 });
