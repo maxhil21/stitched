@@ -16,10 +16,6 @@ jest.mock("react-native-reanimated", () =>
 
 jest.mock("react-native/src/private/animated/NativeAnimatedHelper.js");
 
-jest.mock("react-native-safe-area-context", () => ({
-    useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
-    SafeAreaView: ({ children }) => children,
-}));
 let mockOpenUrl = jest.fn();
 
 jest.mock("react-native", () => {
