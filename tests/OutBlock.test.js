@@ -24,11 +24,11 @@ jest.mock("react-native", () => {
         canOpenURL: jest.fn()
     }
 
-    const RN = jest.requireActual("react-native");
-    RN.Linking = tempLinkingMock;
+    const reactNativeMock = jest.requireActual("react-native");
+    reactNativeMock.Linking = tempLinkingMock;
 
 
-    return RN;
+    return reactNativeMock;
 
 });
 
