@@ -1,4 +1,4 @@
-name: onPush
+name: Push workflow
 on: [push]
 
 jobs:
