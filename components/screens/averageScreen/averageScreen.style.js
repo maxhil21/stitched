@@ -34,4 +34,21 @@ export const s = StyleSheet.create({
         flexDirection: 'row',
         fontFamily: 'CardotSemibold',
     },
+    body: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 4,
+    },
+    subHeadText: {
+        fontSize: height * 0.02,
+        color: '#8F959E',
+        alignSelf: "center",
+        marginTop: height * 0.025,
+        fontFamily: 'CardotSemibold',
+    },
+    subText: {
+        fontSize: height * 0.015,
+        color: '#8F959E',
+        alignSelf: "center",
+    }
 });
