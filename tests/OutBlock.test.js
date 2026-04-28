@@ -1,4 +1,5 @@
 import React from 'react';
+import "react-native"
 import { render, fireEvent } from '@testing-library/react-native';
 import { OutBlock } from '@/screens/cheapOutScreen/outBlock';
 
@@ -7,31 +8,17 @@ jest.mock('react-native-safe-area-context', () => ({
     SafeAreaView: ({ children }) => children,
 }));
 
-
-import "react-native"
-
 jest.mock("react-native-reanimated", () =>
     require("react-native-reanimated/mock")
 );
 
 jest.mock("react-native/src/private/animated/NativeAnimatedHelper.js");
 
-let mockOpenUrl = jest.fn();
-
 jest.mock("react-native", () => {
-    const tempLinkingMock = {
-        openURL: mockOpenUrl,
-        canOpenURL: jest.fn()
-    }
-
     const reactNativeMock = jest.requireActual("react-native");
-    reactNativeMock.Linking = tempLinkingMock;
-
 
     return reactNativeMock;
-
 });
-
 
 describe('OutBlock', () => {
 
@@ -58,5 +45,4 @@ describe('OutBlock', () => {
         expect(getByText(/quality:/)).toBeTruthy();
         expect(getByText(/expected price:/)).toBeTruthy();
     });
-
 });

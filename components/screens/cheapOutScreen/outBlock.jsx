@@ -46,7 +46,7 @@ export function OutBlock({itemData}) {
         }
 
         return itemData.data.map((item, index) => (
-            <TouchableOpacity key={index} style={s.container} testID="Ron" onPress={() => [pressed = index, goTo()]}>
+            <TouchableOpacity key={index} style={s.container} onPress={() => [pressed = index, goTo()]}>
                 <View style={s.block}>
                     <View style={s.head}>
                         <Text style={s.blockText}>cost: {formatNumber(item.cost)}   </Text>
